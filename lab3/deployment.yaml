@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: deployment-lab3
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: deployment-lab3
+  template:
+    metadata:
+      labels:
+        app: deployment-lab3
+    spec:
+      containers:
+        - name: frontend
+          image: ifilyaninitmo/itdt-contained-frontend:master
+          ports:
+          - containerPort: 3000
+          envFrom:
+            - configMapRef:
+                name: configmap-lab3
